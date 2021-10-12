@@ -19,9 +19,15 @@ spec:
         image: registrymoa6722.azurecr.io/tripinsights/userprofile:1.0
         env:
         - name: SQL_USER
-          value: "sqladminmOa6722"
+          valueFrom:
+            secretKeyRef:
+              name: secret-basic-auth
+              key: username
         - name: SQL_PASSWORD
-          value: "kG4mm1Pb8"
+          valueFrom:
+            secretKeyRef:
+              name: secret-basic-auth
+              key: password
         - name: SQL_SERVER
           value: "sqlservermoa6722.database.windows.net"
         - name: SQL_DBNAME
