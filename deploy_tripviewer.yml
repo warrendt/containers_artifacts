@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: azure-vote-back
+        app: tripviewer
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
@@ -20,7 +20,8 @@ spec:
         env:
         - name: USERPROFILE_API_ENDPOINT
           value: "http://userprofile:80"
-          
+        - name: TRIPS_API_ENDPOINT
+          value: "http://trips:80"
         resources:
           requests:
             cpu: 100m
@@ -30,13 +31,14 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 80
-          name: redis
+          name: tripviewer
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: tripviewer
 spec:
+  type: LoadBalancer
   ports:
   - port: 80
   selector:
