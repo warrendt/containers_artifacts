@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poi
+  template:
+    metadata:
+      labels:
+        app: poi
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: poi
+        image: registrymoa6722.azurecr.io/tripinsights/poi:1.0
+        env:
+        - name: WEB_SERVER_BASE_URI
+          value: "http://0.0.0.0"
+        - name: WEB_PORT
+          value: "80"
+        - name: CONFIG_FILES_PATH
+          value: "/secrets"
+        - name: SQL_USER
+          value: "sqladminmOa6722"
+        - name: SQL_PASSWORD
+          value: "kG4mm1Pb8"
+        - name: SQL_SERVER
+          value: "sqlservermoa6722"
+        - name: SQL_DBNAME
+          value: "mydrivingDB"
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+          name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: poi
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: poi
