@@ -19,11 +19,11 @@ spec:
         image: registrymoa6722.azurecr.io/tripinsights/user-java:1.0
         env:
         - name: SQL_USER
-          value: "sqladminhRw7040"
+          value: "sqladminmOa6722"
         - name: SQL_PASSWORD
-          value: "jQ1ad9Ut5"
+          value: "kG4mm1Pb8"
         - name: SQL_SERVER
-          value: "sqlserverhrw7040.database.windows.net"
+          value: "sqlservermoa6722"
         - name: SQL_DBNAME
           value: "mydrivingDB"
           
