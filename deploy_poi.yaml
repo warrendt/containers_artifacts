@@ -29,7 +29,7 @@ spec:
         - name: SQL_PASSWORD
           value: "kG4mm1Pb8"
         - name: SQL_SERVER
-          value: "sqlservermoa6722"
+          value: "sqlservermoa6722.database.windows.net"
         - name: SQL_DBNAME
           value: "mydrivingDB"
         - name: ASPNETCORE_ENVIRONMENT
@@ -43,7 +43,7 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 80
-          name: redis
+          name: poi
 ---
 apiVersion: v1
 kind: Service
