@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trips
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tripviewer
+  template:
+    metadata:
+      labels:
+        app: trips
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: tripviewer
+        image: registrymoa6722.azurecr.io/tripinsights/trips:1.0
+        env:
+        - name: SQL_USER
+          value: "sqladminmOa6722"
+        - name: SQL_PASSWORD
+          value: "kG4mm1Pb8"
+        - name: SQL_SERVER
+          value: "sqlservermoa6722"
+        - name: SQL_DBNAME
+          value: "mydrivingDB"
+          
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+          name: trips
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trips
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: tripviewer
