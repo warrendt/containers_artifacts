@@ -1,0 +1,1 @@
+az acr build -f ../../dockerfiles/Dockerfile_0 --registry registrymoa6722 --image "tripinsights"
