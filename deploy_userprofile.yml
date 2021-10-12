@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userprofile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userprofile
+  template:
+    metadata:
+      labels:
+        app: userprofile
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: userprofile
+        image: registrymoa6722.azurecr.io/tripinsights/userprofile:1.0
+        env:
+        - name: SQL_USER
+          value: "sqladminhRw7040"
+        - name: SQL_PASSWORD
+          value: "jQ1ad9Ut5"
+        - name: SQL_SERVER
+          value: "sqlserverhrw7040.database.windows.net"
+        - name: SQL_DBNAME
+          value: "mydrivingDB"
+          
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+          name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userprofile
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: userprofile
