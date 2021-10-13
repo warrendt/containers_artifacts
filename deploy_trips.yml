@@ -30,7 +30,10 @@ spec:
               name: secret-basic-auth
               key: password
         - name: SQL_SERVER
-          value: "sqlservermoa6722.database.windows.net"
+          valueFrom:
+            secretKeyRef:
+              name: secret-basic-auth
+              key: password
         - name: SQL_DBNAME
           value: "mydrivingDB"
         resources:
