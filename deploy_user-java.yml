@@ -19,21 +19,14 @@ spec:
       - name: user-java
         image: registrymoa6722.azurecr.io/tripinsights/user-java:1.0
         env:
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: password
-        - name: SQL_SERVER
-          value: "sqlservermoa6722"
         - name: SQL_DBNAME
           value: "mydrivingDB"
-          
+
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/secrets"
+          readOnly: true
+
         resources:
           requests:
             cpu: 100m
@@ -44,6 +37,13 @@ spec:
         ports:
         - containerPort: 80
           name: redis
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "team3keyvaultopenhack"
 ---
 apiVersion: v1
 kind: Service
