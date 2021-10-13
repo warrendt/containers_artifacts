@@ -21,26 +21,14 @@ spec:
         env:
         - name: WEB_SERVER_BASE_URI
           value: "http://0.0.0.0"
-        - name: WEB_PORT
-          value: "80"
-        - name: CONFIG_FILES_PATH
-          value: "/secrets"
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: password
-        - name: SQL_SERVER
-          value: "sqlservermoa6722.database.windows.net"
         - name: SQL_DBNAME
           value: "mydrivingDB"
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/secrets"
+          readOnly: true
         resources:
           requests:
             cpu: 100m
@@ -49,8 +37,16 @@ spec:
             cpu: 250m
             memory: 256Mi
         ports:
-        - containerPort: 80
-          name: poi
+          - containerPort: 80
+            name: poi
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "team3keyvaultopenhack"
+
 ---
 apiVersion: v1
 kind: Service
