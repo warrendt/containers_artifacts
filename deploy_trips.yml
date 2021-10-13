@@ -19,23 +19,12 @@ spec:
       - name: tripviewer
         image: registrymoa6722.azurecr.io/tripinsights/trips:1.0
         env:
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: password
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: secret-basic-auth
-              key: server
         - name: SQL_DBNAME
           value: "mydrivingDB"
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/secrets"
+          readOnly: true
         resources:
           requests:
             cpu: 100m
