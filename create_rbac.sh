@@ -28,3 +28,4 @@
 
 RID=$(az ad group show --group web --query objectId -o tsv)
 echo $RID
+
