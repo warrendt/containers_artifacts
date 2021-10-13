@@ -18,7 +18,6 @@ spec:
       containers:
       - name: userprofile
         image: registrymoa6722.azurecr.io/tripinsights/userprofile:1.0
-        env:
         volumeMounts:
         - name: secrets-store-inline
           mountPath: "/secrets"
