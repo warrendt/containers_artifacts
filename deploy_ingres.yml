@@ -1,55 +1,37 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-world-ingress
+  name: nginx-ingress
+  namespace: api
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
   - http:
       paths:
-      - path: /hello-world-one(/|$)(.*)
-        pathType: Prefix
+      - path: /api/poi(.*)
         backend:
           service:
-            name: aks-helloworld-one
+            name: poi
             port:
               number: 80
-      - path: /hello-world-two(/|$)(.*)
-        pathType: Prefix
+      - path: /api/trips(.*)
         backend:
           service:
-            name: aks-helloworld-two
+            name: trips
             port:
               number: 80
-      - path: /(.*)
-        pathType: Prefix
+      - path: /api/user-java(.*)
         backend:
           service:
-            name: aks-helloworld-one
+            name: user-java
             port:
               number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: hello-world-ingress-static
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /static/$2
-spec:
-  rules:
-  - http:
-      paths:
-      - path:
-        pathType: Prefix
+      - path: /api/user(.*)
         backend:
           service:
-            name: aks-helloworld-one
-            port: 
+            name: userprofile
+            port:
               number: 80
-        path: /static(/|$)(.*)
