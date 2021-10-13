@@ -33,7 +33,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: secret-basic-auth
-              key: password
+              key: server
         - name: SQL_DBNAME
           value: "mydrivingDB"
         resources:
