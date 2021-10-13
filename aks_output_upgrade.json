@@ -1,0 +1,195 @@
+az aks enable-addons --addons azure-keyvault-secrets-provider --name Team3AKS2 --resource-group TeamResources
+
+
+@warrendt ➜ /workspaces/containers_artifacts (main ✗) $ az aks enable-addons --addons azure-keyvault-secrets-provider --name Team3AKS2 --resource-group TeamResources
+The behavior of this command has been altered by the following extension: aks-preview
+{
+  "aadProfile": {
+    "adminGroupObjectIDs": [
+      "857f6bba-34d5-4e82-9bb6-eda7ff2b807f"
+    ],
+    "clientAppId": null,
+    "enableAzureRbac": null,
+    "managed": true,
+    "serverAppId": null,
+    "serverAppSecret": null,
+    "tenantId": "b116dd6c-a1ee-45f0-94a1-f6e36f5e88a1"
+  },
+  "addonProfiles": {
+    "azureKeyvaultSecretsProvider": {
+      "config": {
+        "enableSecretRotation": "false"
+      },
+      "enabled": true,
+      "identity": {
+        "clientId": "020308c0-f8f7-4581-a14e-375ce0f5346a",
+        "objectId": "b1735a8e-4654-49e0-a991-5c513021ad03",
+        "resourceId": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourcegroups/MC_teamResources_Team3AKS2_northeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/azurekeyvaultsecretsprovider-team3aks2"
+      }
+    },
+    "azurepolicy": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    },
+    "httpApplicationRouting": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    },
+    "omsAgent": {
+      "config": {
+        "logAnalyticsWorkspaceResourceID": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourcegroups/defaultresourcegroup-neu/providers/microsoft.operationalinsights/workspaces/defaultworkspace-5239decf-2a5b-497d-9f85-b64f45c13a65-neu"
+      },
+      "enabled": true,
+      "identity": {
+        "clientId": "b65b973d-ee5c-4328-b6f6-9515a7f913b6",
+        "objectId": "fea73654-59d9-4106-8307-3662f8ead09c",
+        "resourceId": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourcegroups/MC_teamResources_Team3AKS2_northeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/omsagent-team3aks2"
+      }
+    }
+  },
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": [
+        "1",
+        "2",
+        "3"
+      ],
+      "count": 3,
+      "creationData": null,
+      "enableAutoScaling": false,
+      "enableEncryptionAtHost": null,
+      "enableFips": false,
+      "enableNodePublicIp": null,
+      "enableUltraSsd": null,
+      "gpuInstanceProfile": null,
+      "kubeletConfig": null,
+      "kubeletDiskType": "OS",
+      "linuxOsConfig": null,
+      "maxCount": null,
+      "maxPods": 20,
+      "minCount": null,
+      "mode": "System",
+      "name": "agentpool",
+      "nodeImageVersion": "AKSUbuntu-1804gen2containerd-2021.09.29",
+      "nodeLabels": null,
+      "nodePublicIpPrefixId": null,
+      "nodeTaints": null,
+      "orchestratorVersion": "1.20.9",
+      "osDiskSizeGb": 128,
+      "osDiskType": "Managed",
+      "osSku": "Ubuntu",
+      "osType": "Linux",
+      "podSubnetId": null,
+      "powerState": {
+        "code": "Running"
+      },
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleDownMode": null,
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "spotMaxPrice": null,
+      "tags": null,
+      "type": "VirtualMachineScaleSets",
+      "upgradeSettings": null,
+      "vmSize": "Standard_DS2_v2",
+      "vnetSubnetId": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourceGroups/teamResources/providers/Microsoft.Network/virtualNetworks/vnet/subnets/aks-subnet",
+      "workloadRuntime": null
+    }
+  ],
+  "apiServerAccessProfile": {
+    "authorizedIpRanges": null,
+    "disableRunCommand": null,
+    "enablePrivateCluster": false,
+    "enablePrivateClusterPublicFqdn": null,
+    "privateDnsZone": null
+  },
+  "autoScalerProfile": null,
+  "autoUpgradeProfile": null,
+  "azurePortalFqdn": "team3aks2-dns-f4a17b48.portal.hcp.northeurope.azmk8s.io",
+  "disableLocalAccounts": null,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "Team3AKS2-dns",
+  "enablePodSecurityPolicy": null,
+  "enableRbac": true,
+  "extendedLocation": null,
+  "fqdn": "team3aks2-dns-f4a17b48.hcp.northeurope.azmk8s.io",
+  "fqdnSubdomain": null,
+  "httpProxyConfig": null,
+  "id": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourcegroups/teamResources/providers/Microsoft.ContainerService/managedClusters/Team3AKS2",
+  "identity": {
+    "principalId": "46d500f0-9efd-44ce-9730-739364ea46b8",
+    "tenantId": "b116dd6c-a1ee-45f0-94a1-f6e36f5e88a1",
+    "type": "SystemAssigned",
+    "userAssignedIdentities": null
+  },
+  "identityProfile": {
+    "kubeletidentity": {
+      "clientId": "b49e5c61-c930-4a07-a4e2-5876b8eb349e",
+      "objectId": "ecfaf0aa-489f-4ae5-bcb5-07503478c8c0",
+      "resourceId": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourcegroups/MC_teamResources_Team3AKS2_northeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/Team3AKS2-agentpool"
+    }
+  },
+  "kubernetesVersion": "1.20.9",
+  "linuxProfile": null,
+  "location": "northeurope",
+  "maxAgentPools": 100,
+  "name": "Team3AKS2",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "dockerBridgeCidr": "172.17.0.1/16",
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "effectiveOutboundIPs": [
+        {
+          "id": "/subscriptions/5239decf-2a5b-497d-9f85-b64f45c13a65/resourceGroups/MC_teamResources_Team3AKS2_northeurope/providers/Microsoft.Network/publicIPAddresses/266938a8-e3b9-4d2d-8185-9b217a24dc54",
+          "resourceGroup": "MC_teamResources_Team3AKS2_northeurope"
+        }
+      ],
+      "enableMultipleStandardLoadBalancers": null,
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIPs": {
+        "count": 1
+      },
+      "outboundIPs": null,
+      "outboundIpPrefixes": null
+    },
+    "loadBalancerSku": "Standard",
+    "natGatewayProfile": null,
+    "networkMode": null,
+    "networkPlugin": "azure",
+    "networkPolicy": null,
+    "outboundType": "loadBalancer",
+    "podCidr": null,
+    "serviceCidr": "10.0.0.0/16"
+  },
+  "nodeResourceGroup": "MC_teamResources_Team3AKS2_northeurope",
+  "podIdentityProfile": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "privateFqdn": null,
+  "privateLinkResources": null,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "teamResources",
+  "securityProfile": null,
+  "servicePrincipalProfile": {
+    "clientId": "msi",
+    "secret": null
+  },
+  "sku": {
+    "name": "Basic",
+    "tier": "Free"
+  },
+  "tags": null,
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "windowsProfile": {
+    "adminPassword": null,
+    "adminUsername": "azureuser",
+    "enableCsiProxy": true,
+    "licenseType": null
+  }
+}
