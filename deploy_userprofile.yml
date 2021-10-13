@@ -19,31 +19,10 @@ spec:
       - name: userprofile
         image: registrymoa6722.azurecr.io/tripinsights/userprofile:1.0
         env:
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: secret-userprofile
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: secret-userprofile
-              key: password
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: secret-userprofile
-              key: server
-        - name: SQL_DBNAME
-<<<<<<< HEAD
-          value: "mydrivingDB"
-=======
-          valueFrom:
-            secretKeyRef:
-              name: secret-userprofile
-              key: dbname
-          
->>>>>>> 58e863d72b459455ddf5a0a9f38374f14602cd3e
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/secrets"
+          readOnly: true
         resources:
           requests:
             cpu: 100m
@@ -54,6 +33,13 @@ spec:
         ports:
         - containerPort: 80
           name: redis
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "team3keyvaultopenhack"
 ---
 apiVersion: v1
 kind: Service
