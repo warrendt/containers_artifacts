@@ -35,6 +35,13 @@ spec:
         ports:
         - containerPort: 80
           name: trips
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "team3keyvaultopenhack"
 ---
 apiVersion: v1
 kind: Service
