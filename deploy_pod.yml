@@ -9,9 +9,9 @@ spec:
   - name: demo
     image: mcr.microsoft.com/oss/azure/aad-pod-identity/demo:v1.6.3
     args:
-      - --subscriptionid=$SUBSCRIPTION_ID
-      - --clientid=$IDENTITY_CLIENT_ID
-      - --resourcegroup=$IDENTITY_RESOURCE_GROUP
+      - --subscriptionid=5239decf-2a5b-497d-9f85-b64f45c13a65
+      - --clientid=b49e5c61-c930-4a07-a4e2-5876b8eb349e
+      - --resourcegroup=MC_teamResources_Team3AKS2_northeurope
     env:
       - name: MY_POD_NAME
         valueFrom:
