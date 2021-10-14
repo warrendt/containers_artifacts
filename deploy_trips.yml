@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: trips
   namespace: api
+  labels:
+    aadpodidbinding: "Team3PodID"
 spec:
   replicas: 1
   selector:
@@ -18,13 +20,17 @@ spec:
       containers:
       - name: tripviewer
         image: registrymoa6722.azurecr.io/tripinsights/trips:1.0
+        args:
+          - --subscriptionid="5239decf-2a5b-497d-9f85-b64f45c13a65"
+          - --clientid="b49e5c61-c930-4a07-a4e2-5876b8eb349e"
+          - --resourcegroup="MC_teamResources_Team3AKS2_northeurope"
         env:
         - name: SQL_DBNAME
           value: "mydrivingDB"
-        volumeMounts:
-        - name: secrets-store-inline
-          mountPath: "/secrets"
-          readOnly: true
+        # volumeMounts:
+        # - name: secrets-store-inline
+        #   mountPath: "/secrets"
+        #   readOnly: true
         resources:
           requests:
             cpu: 100m
@@ -35,13 +41,13 @@ spec:
         ports:
         - containerPort: 80
           name: trips
-      volumes:
-        - name: secrets-store-inline
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: "team3keyvaultopenhack"
+      # volumes:
+      #   - name: secrets-store-inline
+      #     csi:
+      #       driver: secrets-store.csi.k8s.io
+      #       readOnly: true
+      #       volumeAttributes:
+      #         secretProviderClass: "team3keyvaultopenhack"
 ---
 apiVersion: v1
 kind: Service
