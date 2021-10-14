@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: trips
   namespace: api
-  labels:
-    aadpodidbinding: "Team3PodID"
 spec:
   replicas: 1
   selector:
@@ -20,11 +18,11 @@ spec:
       containers:
       - name: tripviewer
         image: registrymoa6722.azurecr.io/tripinsights/trips:1.0
-        args:
-          - --subscriptionid=5239decf-2a5b-497d-9f85-b64f45c13a65
-          - --clientid=b49e5c61-c930-4a07-a4e2-5876b8eb349e
-          - --resourcegroup=MC_teamResources_Team3AKS2_northeurope
         env:
+        - name: CREDENTIAL_METHOD
+          value: managed_identity
+        - name: IDENTITY_CLIENT_ID
+          value: b49e5c61-c930-4a07-a4e2-5876b8eb349e
         - name: SQL_DBNAME
           value: "mydrivingDB"
         - name: SQL_SERVER
